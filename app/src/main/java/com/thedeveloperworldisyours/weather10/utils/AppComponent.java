@@ -1,6 +1,6 @@
 package com.thedeveloperworldisyours.weather10.utils;
 
-import com.thedeveloperworldisyours.weather10.MainActivity;
+import com.thedeveloperworldisyours.weather10.cities.CitiesActivity;
 
 import javax.inject.Singleton;
 
@@ -13,6 +13,6 @@ import dagger.Component;
 @Component(modules = AppModule.class)
 public interface AppComponent {
 
-    void inject(MainActivity citiesActivity);
+    void inject(CitiesActivity citiesActivity);
 
 }
