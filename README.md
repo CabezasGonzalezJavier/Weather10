@@ -12,7 +12,7 @@ Libraries and tools included:
 4. **[Retrofit 2](https://github.com/square/retrofit)**
 5. **[Dagger 2](https://google.github.io/dagger/)**
 6. **[Butterknife](https://github.com/JakeWharton/butterknife)**
-7. **[Retrolambda](https://github.com/evant/gradle-retrolambda)**
+7. **[CircleImageView](https://github.com/hdodenhof/CircleImageView)**
 8. **[Guava](https://github.com/google/guava)**
 9. **[Okhttp](https://github.com/square/okhttp)**
 10. **[JUnit](http://junit.org/junit4/)**
