@@ -3,4 +3,12 @@
 
     <string name="retry">Retry</string>
     <string name="error_server">There are some problems to bring the data</string>
+
+    <string name="no_found">No found</string>
+
+    <!--detail-->
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="page">Page</string>
+    <string name="authors">Authors</string>
 </resources>

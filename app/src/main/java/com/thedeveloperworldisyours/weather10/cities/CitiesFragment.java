@@ -1,5 +1,6 @@
 package com.thedeveloperworldisyours.weather10.cities;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
@@ -13,10 +14,13 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.thedeveloperworldisyours.weather10.R;
+import com.thedeveloperworldisyours.weather10.data.Generic;
 import com.thedeveloperworldisyours.weather10.data.model.List;
+import com.thedeveloperworldisyours.weather10.utils.InteractionListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static android.support.design.widget.Snackbar.LENGTH_LONG;
 
@@ -24,7 +28,7 @@ import static android.support.design.widget.Snackbar.LENGTH_LONG;
  * Created by javiergonzalezcabezas on 12/12/17.
  */
 
-public class CitiesFragment extends Fragment implements CitiesContract.View{
+public class CitiesFragment extends Fragment implements CitiesContract.View,CitiesAdapter.ClickListener {
 
     @BindView(R.id.cities_fragment_progress)
     ProgressBar mProgressBar;
@@ -41,6 +45,10 @@ public class CitiesFragment extends Fragment implements CitiesContract.View{
     CitiesAdapter mAdapter;
 
     CitiesContract.Presenter mPresenter;
+
+    java.util.List<List> mElements;
+
+    InteractionListener mListener;
 
     public CitiesFragment() {
         // Required empty public constructor
@@ -72,12 +80,13 @@ public class CitiesFragment extends Fragment implements CitiesContract.View{
 
     @Override
     public void showCities(java.util.List<List> listElements) {
+        mElements = listElements;
         mRecyclerView.setHasFixedSize(true);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mAdapter = new CitiesAdapter(getActivity(), listElements);
         mRecyclerView.setAdapter(mAdapter);
-        //mAdapter.setOnItemClickListener(this);
+        mAdapter.setOnItemClickListener(this);
     }
 
     @Override
@@ -94,5 +103,46 @@ public class CitiesFragment extends Fragment implements CitiesContract.View{
             mRetry.setVisibility(View.GONE);
             mProgressBar.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void takeGeneric(Generic generic) {
+
+        mListener.onFragmentInteraction(generic);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        mPresenter.onClickItem(mElements.get(position), getActivity().getString(R.string.no_found));
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof InteractionListener) {
+            //init the listener
+            mListener = (InteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement InteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mPresenter.unSubscribe();
+    }
+
+    @OnClick(R.id.cities_fragment_retry_button)
+    public void onClick(){
+        setLoadingIndicator(false);
+        mPresenter.fetch();
     }
 }

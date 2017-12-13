@@ -45,6 +45,12 @@ public class List {
         this.name = name;
     }
 
+    public List(String name, Main main, Wind wind) {
+        this.name = name;
+        this.main = main;
+        this.wind = wind;
+    }
+
     public Integer getId() {
         return id;
     }

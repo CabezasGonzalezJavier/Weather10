@@ -13,6 +13,11 @@ public class Wind {
     @Expose
     private Integer deg;
 
+    public Wind(Integer speed, Integer deg) {
+        this.speed = speed;
+        this.deg = deg;
+    }
+
     public Integer getSpeed() {
         return speed;
     }

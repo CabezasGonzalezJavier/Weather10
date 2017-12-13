@@ -2,8 +2,11 @@ package com.thedeveloperworldisyours.weather10;
 
 import com.thedeveloperworldisyours.weather10.cities.CitiesContract;
 import com.thedeveloperworldisyours.weather10.cities.CitiesPresenter;
+import com.thedeveloperworldisyours.weather10.data.Generic;
 import com.thedeveloperworldisyours.weather10.data.RemoteDataSource;
 import com.thedeveloperworldisyours.weather10.data.model.Example;
+import com.thedeveloperworldisyours.weather10.data.model.Main;
+import com.thedeveloperworldisyours.weather10.data.model.Wind;
 import com.thedeveloperworldisyours.weather10.utils.scheduler.BaseSchedulerProvider;
 import com.thedeveloperworldisyours.weather10.utils.scheduler.ImmediateSchedulerProvider;
 
@@ -22,12 +25,13 @@ import static com.thedeveloperworldisyours.weather10.utils.Constants.APP_ID;
 import static com.thedeveloperworldisyours.weather10.utils.Constants.CNT;
 import static com.thedeveloperworldisyours.weather10.utils.Constants.LAT;
 import static com.thedeveloperworldisyours.weather10.utils.Constants.LON;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
  * Created by javiergonzalezcabezas on 12/12/17.
  */
-
 public class CitiesPresenterTest {
 
     @Mock
@@ -80,5 +84,35 @@ public class CitiesPresenterTest {
         InOrder inOrder = Mockito.inOrder(mView);
         inOrder.verify(mView).setLoadingIndicator(true);
         inOrder.verify(mView).showError();
+    }
+
+    @Test
+    public void onClickItem() {
+        Main main = new Main(1.1,1,1,1.1,1.1);
+        Wind wind = new Wind(1, 1);
+        com.thedeveloperworldisyours.weather10.data.model.List listItem = new com.thedeveloperworldisyours.weather10.data.model.List("London", main, wind);
+        mPresenter.onClickItem(listItem, "");
+
+        verify(mView).takeGeneric(any(Generic.class));
+    }
+
+    @Test
+    public void onClickItem_NullWind() {
+        Main main = new Main(1.1,1,1,1.1,1.1);
+        Wind wind = new Wind(null, null);
+        com.thedeveloperworldisyours.weather10.data.model.List listItem = new com.thedeveloperworldisyours.weather10.data.model.List("London", main, wind);
+        mPresenter.onClickItem(listItem, "");
+
+        verify(mView).takeGeneric(any(Generic.class));
+    }
+
+    @Test
+    public void onClickItem_NullMainAndWind() {
+        Main main = new Main(null,null,null,null,null);
+        Wind wind = new Wind(null, null);
+        com.thedeveloperworldisyours.weather10.data.model.List listItem = new com.thedeveloperworldisyours.weather10.data.model.List("London", main, wind);
+        mPresenter.onClickItem(listItem, "");
+
+        verify(mView).takeGeneric(any(Generic.class));
     }
 }

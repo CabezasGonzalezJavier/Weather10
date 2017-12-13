@@ -10,4 +10,5 @@ public class Constants {
     public static final String APP_ID = "3f7449338e14832e73c48b5272709bd7";
     public static final String LAT = "35";
     public static final String LON = "139";
+    public final static String SERIALIZABLE_GENERIC = "generic";
 }

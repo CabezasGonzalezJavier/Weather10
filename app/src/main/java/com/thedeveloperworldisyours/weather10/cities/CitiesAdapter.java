@@ -45,7 +45,7 @@ public class CitiesAdapter extends RecyclerView
 
         @Override
         public void onClick(View v) {
-            sClickListener.onItemClick(getAdapterPosition(), v);
+            sClickListener.onItemClick(getAdapterPosition());
         }
     }
     public void setOnItemClickListener(CitiesAdapter.ClickListener myClickListener) {
@@ -78,6 +78,6 @@ public class CitiesAdapter extends RecyclerView
     }
 
     interface ClickListener {
-        void onItemClick(int position, View v);
+        void onItemClick(int position);
     }
 }

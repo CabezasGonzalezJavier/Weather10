@@ -6,12 +6,11 @@ import com.thedeveloperworldisyours.weather10.data.RemoteDataSource;
 import com.thedeveloperworldisyours.weather10.data.model.Example;
 import com.thedeveloperworldisyours.weather10.utils.scheduler.BaseSchedulerProvider;
 
-import java.util.List;
-
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.thedeveloperworldisyours.weather10.data.CreateGeneric.newGeneric;
 import static com.thedeveloperworldisyours.weather10.utils.Constants.APP_ID;
 import static com.thedeveloperworldisyours.weather10.utils.Constants.CNT;
 import static com.thedeveloperworldisyours.weather10.utils.Constants.LAT;
@@ -77,5 +76,10 @@ public class CitiesPresenter implements CitiesContract.Presenter {
                         });
 
         mSubscriptions.add(subscription);
+    }
+
+    @Override
+    public void onClickItem(com.thedeveloperworldisyours.weather10.data.model.List list, String noFound) {
+        mView.takeGeneric(newGeneric(list, noFound));
     }
 }
