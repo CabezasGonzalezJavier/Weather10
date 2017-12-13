@@ -81,6 +81,7 @@ public class CitiesPresenterTest {
 
         when(mRemoteDataSource.getWeatherRx(LAT, LON, CNT, APP_ID))
                 .thenReturn(Observable.error(new Throwable("An error has occurred!")));
+
         mPresenter.fetch();
 
         InOrder inOrder = Mockito.inOrder(mView);
@@ -89,7 +90,64 @@ public class CitiesPresenterTest {
     }
 
     @Test
-    public void onClickItemWithRain() {
+    public void onClickItem_withName() {
+        com.thedeveloperworldisyours.weather10.data.model.List listItem = new com.thedeveloperworldisyours.weather10.data.model.List(1, "London");
+
+        mPresenter.onClickItem(listItem, "");
+
+        verify(mView).takeGeneric(any(Generic.class));
+    }
+
+    @Test
+    public void onClickItem_withWindAndCity() {
+        Wind wind = new Wind(null, null);
+        com.thedeveloperworldisyours.weather10.data.model.List listItem = new com.thedeveloperworldisyours.weather10.data.model.List("London", wind);
+
+        mPresenter.onClickItem(listItem, "");
+
+        verify(mView).takeGeneric(any(Generic.class));
+    }
+
+    @Test
+    public void onClickItem_withWeatherWindMainAndCity() {
+        Weather weather = new Weather("Clear", "clear");
+        java.util.List<Weather> weatherList = new ArrayList<>();
+        weatherList.add(weather);
+        Main main = new Main(1.1, 1, 1, 1.1, 1.1);
+        Wind wind = new Wind(1, 1);
+        com.thedeveloperworldisyours.weather10.data.model.List listItem = new com.thedeveloperworldisyours.weather10.data.model.List("London", main, wind, weatherList);
+
+        mPresenter.onClickItem(listItem, "");
+
+        verify(mView).takeGeneric(any(Generic.class));
+    }
+    @Test
+    public void onClickItem_withWeatherMainAndCity() {
+        Weather weather = new Weather("Clear", "clear");
+        java.util.List<Weather> weatherList = new ArrayList<>();
+        weatherList.add(weather);
+        Main main = new Main(1.1, 1, 1, 1.1, 1.1);
+        com.thedeveloperworldisyours.weather10.data.model.List listItem = new com.thedeveloperworldisyours.weather10.data.model.List("London", main, weatherList);
+
+        mPresenter.onClickItem(listItem, "");
+
+        verify(mView).takeGeneric(any(Generic.class));
+    }
+    @Test
+    public void onClickItem_withWeatherWindAndCity() {
+        Weather weather = new Weather("Clear", "clear");
+        java.util.List<Weather> weatherList = new ArrayList<>();
+        weatherList.add(weather);
+        Wind wind = new Wind(null, null);
+        com.thedeveloperworldisyours.weather10.data.model.List listItem = new com.thedeveloperworldisyours.weather10.data.model.List("London", wind, weatherList);
+
+        mPresenter.onClickItem(listItem, "");
+
+        verify(mView).takeGeneric(any(Generic.class));
+    }
+
+    @Test
+    public void onClickItem_withWeatherWindMainRainAndCity() {
         Rain rain = new Rain(1);
         Weather weather = new Weather("Clear", "clear");
         java.util.List<Weather> weatherList = new ArrayList<>();
@@ -97,57 +155,49 @@ public class CitiesPresenterTest {
         Main main = new Main(1.1, 1, 1, 1.1, 1.1);
         Wind wind = new Wind(1, 1);
         com.thedeveloperworldisyours.weather10.data.model.List listItem = new com.thedeveloperworldisyours.weather10.data.model.List("London", main, wind, weatherList, rain);
-        mPresenter.onClickItem(listItem, "");
 
-        verify(mView).takeGeneric(any(Generic.class));
-    }
-    @Test
-    public void onClickItem() {
-        Weather weather = new Weather("Clear", "clear");
-        java.util.List<Weather> weatherList = new ArrayList<>();
-        weatherList.add(weather);
-        Main main = new Main(1.1, 1, 1, 1.1, 1.1);
-        Wind wind = new Wind(1, 1);
-        com.thedeveloperworldisyours.weather10.data.model.List listItem = new com.thedeveloperworldisyours.weather10.data.model.List("London", main, wind, weatherList);
         mPresenter.onClickItem(listItem, "");
 
         verify(mView).takeGeneric(any(Generic.class));
     }
 
     @Test
-    public void onClickItem_NullWind() {
+    public void onClickItem_nullElementsInWind() {
         Weather weather = new Weather("Clear", "clear");
         java.util.List<Weather> weatherList = new ArrayList<>();
         weatherList.add(weather);
         Main main = new Main(1.1, 1, 1, 1.1, 1.1);
         Wind wind = new Wind(null, null);
         com.thedeveloperworldisyours.weather10.data.model.List listItem = new com.thedeveloperworldisyours.weather10.data.model.List("London", main, wind, weatherList);
+
         mPresenter.onClickItem(listItem, "");
 
         verify(mView).takeGeneric(any(Generic.class));
     }
 
     @Test
-    public void onClickItem_NullMainAndWind() {
+    public void onClickItem_nullElementsInMainAndWind() {
         Weather weather = new Weather("Clear", "clear");
         java.util.List<Weather> weatherList = new ArrayList<>();
         weatherList.add(weather);
         Main main = new Main(null, null, null, null, null);
         Wind wind = new Wind(null, null);
         com.thedeveloperworldisyours.weather10.data.model.List listItem = new com.thedeveloperworldisyours.weather10.data.model.List("London", main, wind, weatherList);
+
         mPresenter.onClickItem(listItem, "");
 
         verify(mView).takeGeneric(any(Generic.class));
     }
 
     @Test
-    public void onClickItem_NullMainWindAndWeather() {
+    public void onClickItem_nullElementsMainWindAndWeather() {
         Weather weather = new Weather(null, null);
         java.util.List<Weather> weatherList = new ArrayList<>();
         weatherList.add(weather);
         Main main = new Main(null, null, null, null, null);
         Wind wind = new Wind(null, null);
         com.thedeveloperworldisyours.weather10.data.model.List listItem = new com.thedeveloperworldisyours.weather10.data.model.List("London", main, wind, weatherList);
+
         mPresenter.onClickItem(listItem, "");
 
         verify(mView).takeGeneric(any(Generic.class));

@@ -52,6 +52,23 @@ public class List {
         this.rain = rain;
     }
 
+    public List(String name, Main main, java.util.List<Weather> weather) {
+        this.name = name;
+        this.main = main;
+        this.weather = weather;
+    }
+
+    public List(String name, Wind wind, java.util.List<Weather> weather) {
+        this.name = name;
+        this.wind = wind;
+        this.weather = weather;
+    }
+
+    public List(String name, Wind wind) {
+        this.name = name;
+        this.wind = wind;
+    }
+
     public List(String name, Main main, Wind wind, java.util.List<Weather> weather) {
         this.name = name;
         this.main = main;

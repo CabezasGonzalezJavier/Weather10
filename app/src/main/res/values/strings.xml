@@ -8,12 +8,13 @@
 
     <!--detail-->
     <string name="description">Description:</string>
-    <string name="temperature">Temperature:</string>
     <string name="pressure">Pressure:</string>
     <string name="humidity">Humidity:</string>
-    <string name="temp_min">Temp Minimum:</string>
-    <string name="temp_max">Temp Maximum:</string>
     <string name="rain">Rain:</string>
+    <string name="temperature">Temperature</string>
+    <string name="temp_current">Current:</string>
+    <string name="temp_min">Minimum:</string>
+    <string name="temp_max">Maximum:</string>
     <string name="wind_title">Wind</string>
     <string name="speed">Speed:</string>
     <string name="direction">Direction:</string>
