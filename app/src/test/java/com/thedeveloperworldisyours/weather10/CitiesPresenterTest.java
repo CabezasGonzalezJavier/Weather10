@@ -6,6 +6,7 @@ import com.thedeveloperworldisyours.weather10.data.Generic;
 import com.thedeveloperworldisyours.weather10.data.RemoteDataSource;
 import com.thedeveloperworldisyours.weather10.data.model.Example;
 import com.thedeveloperworldisyours.weather10.data.model.Main;
+import com.thedeveloperworldisyours.weather10.data.model.Weather;
 import com.thedeveloperworldisyours.weather10.data.model.Wind;
 import com.thedeveloperworldisyours.weather10.utils.scheduler.BaseSchedulerProvider;
 import com.thedeveloperworldisyours.weather10.utils.scheduler.ImmediateSchedulerProvider;
@@ -88,9 +89,12 @@ public class CitiesPresenterTest {
 
     @Test
     public void onClickItem() {
-        Main main = new Main(1.1,1,1,1.1,1.1);
+        Weather weather = new Weather("Clear", "clear");
+        java.util.List<Weather> weatherList = new ArrayList<>();
+        weatherList.add(weather);
+        Main main = new Main(1.1, 1, 1, 1.1, 1.1);
         Wind wind = new Wind(1, 1);
-        com.thedeveloperworldisyours.weather10.data.model.List listItem = new com.thedeveloperworldisyours.weather10.data.model.List("London", main, wind);
+        com.thedeveloperworldisyours.weather10.data.model.List listItem = new com.thedeveloperworldisyours.weather10.data.model.List("London", main, wind, weatherList);
         mPresenter.onClickItem(listItem, "");
 
         verify(mView).takeGeneric(any(Generic.class));
@@ -98,9 +102,12 @@ public class CitiesPresenterTest {
 
     @Test
     public void onClickItem_NullWind() {
-        Main main = new Main(1.1,1,1,1.1,1.1);
+        Weather weather = new Weather("Clear", "clear");
+        java.util.List<Weather> weatherList = new ArrayList<>();
+        weatherList.add(weather);
+        Main main = new Main(1.1, 1, 1, 1.1, 1.1);
         Wind wind = new Wind(null, null);
-        com.thedeveloperworldisyours.weather10.data.model.List listItem = new com.thedeveloperworldisyours.weather10.data.model.List("London", main, wind);
+        com.thedeveloperworldisyours.weather10.data.model.List listItem = new com.thedeveloperworldisyours.weather10.data.model.List("London", main, wind, weatherList);
         mPresenter.onClickItem(listItem, "");
 
         verify(mView).takeGeneric(any(Generic.class));
@@ -108,9 +115,25 @@ public class CitiesPresenterTest {
 
     @Test
     public void onClickItem_NullMainAndWind() {
-        Main main = new Main(null,null,null,null,null);
+        Weather weather = new Weather("Clear", "clear");
+        java.util.List<Weather> weatherList = new ArrayList<>();
+        weatherList.add(weather);
+        Main main = new Main(null, null, null, null, null);
         Wind wind = new Wind(null, null);
-        com.thedeveloperworldisyours.weather10.data.model.List listItem = new com.thedeveloperworldisyours.weather10.data.model.List("London", main, wind);
+        com.thedeveloperworldisyours.weather10.data.model.List listItem = new com.thedeveloperworldisyours.weather10.data.model.List("London", main, wind, weatherList);
+        mPresenter.onClickItem(listItem, "");
+
+        verify(mView).takeGeneric(any(Generic.class));
+    }
+
+    @Test
+    public void onClickItem_NullMainWindAndWeather() {
+        Weather weather = new Weather(null, null);
+        java.util.List<Weather> weatherList = new ArrayList<>();
+        weatherList.add(weather);
+        Main main = new Main(null, null, null, null, null);
+        Wind wind = new Wind(null, null);
+        com.thedeveloperworldisyours.weather10.data.model.List listItem = new com.thedeveloperworldisyours.weather10.data.model.List("London", main, wind, weatherList);
         mPresenter.onClickItem(listItem, "");
 
         verify(mView).takeGeneric(any(Generic.class));

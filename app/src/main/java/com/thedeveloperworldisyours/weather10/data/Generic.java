@@ -11,6 +11,10 @@ public class Generic implements Serializable {
     //City
     private String title;
 
+    //weather
+    private String image;
+    private String description;
+
     //Main
     private String temp;
     private String pressure;
@@ -26,8 +30,10 @@ public class Generic implements Serializable {
 
     }
 
-    public Generic(String title, String temp, String pressure, String humidity, String tempMin, String tempMax, String speed, String deg) {
+    public Generic(String title, String image, String description, String temp, String pressure, String humidity, String tempMin, String tempMax, String speed, String deg) {
         this.title = title;
+        this.image = image;
+        this.description = description;
         this.temp = temp;
         this.pressure = pressure;
         this.humidity = humidity;
@@ -43,6 +49,22 @@ public class Generic implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        description = description;
     }
 
     public String getTemp() {

@@ -16,7 +16,7 @@
             android:id="@+id/detail_fragment_collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorAccent"
             android:fitsSystemWindows="true"
             app:contentScrim="@color/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
@@ -60,5 +60,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.v4.widget.NestedScrollView>
-
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/detail_activity_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|start"
+        android:layout_margin="@dimen/fab_margin"
+        app:layout_anchor="@+id/detail_fragment_scroll"
+        app:layout_anchorGravity="top|end"
+        app:srcCompat="@android:drawable/stat_notify_chat" />
 </android.support.design.widget.CoordinatorLayout>

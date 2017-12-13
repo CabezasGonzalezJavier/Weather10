@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.thedeveloperworldisyours.weather10.R;
@@ -15,6 +14,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.thedeveloperworldisyours.weather10.data.image.CreateImage.getImageFromString;
+import static com.thedeveloperworldisyours.weather10.utils.Constants.FIRST_POSITION;
 
 /**
  * Created by javiergonzalezcabezas on 12/12/17.
@@ -33,6 +36,9 @@ public class CitiesAdapter extends RecyclerView
             .OnClickListener {
         @BindView(R.id.cities_item_name_textView)
         TextView mName;
+
+        @BindView(R.id.cities_item_imageView)
+        CircleImageView mImageView;
 
         @BindView(R.id.cities_item_constraintLayout)
         ConstraintLayout mConstraintLayout;
@@ -70,6 +76,8 @@ public class CitiesAdapter extends RecyclerView
     public void onBindViewHolder(CitiesAdapter.DataObjectHolder holder, int position) {
 
         holder.mName.setText(mResult.get(position).getName());
+        holder.mImageView.setImageDrawable(getImageFromString(mResult.get(position).getWeather().get(FIRST_POSITION).getMain(), mContext));
+
     }
 
     @Override

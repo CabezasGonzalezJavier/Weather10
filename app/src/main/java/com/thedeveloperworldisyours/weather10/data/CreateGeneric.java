@@ -2,6 +2,8 @@ package com.thedeveloperworldisyours.weather10.data;
 
 import com.thedeveloperworldisyours.weather10.data.model.List;
 
+import static com.thedeveloperworldisyours.weather10.utils.Constants.FIRST_POSITION;
+
 /**
  * Created by javiergonzalezcabezas on 13/12/17.
  */
@@ -11,16 +13,24 @@ public class CreateGeneric {
     public static Generic newGeneric(List list, String noFound) {
 
         if (list != null) {
-            String title= noFound;
-            String temp= noFound;
-            String pressure= noFound;
-            String humidity= noFound;
-            String tempMin= noFound;
-            String tempMax= noFound;
-            String speed= noFound;
-            String deg= noFound;
+            String title = noFound;
+            String temp = noFound;
+            String image = noFound;
+            String description = noFound;
+            String pressure = noFound;
+            String humidity = noFound;
+            String tempMin = noFound;
+            String tempMax = noFound;
+            String speed = noFound;
+            String deg = noFound;
             if (list.getName() != null) {
                 title = list.getName();
+            }
+            if (list.getWeather().get(FIRST_POSITION).getMain() != null) {
+                image = String.valueOf(list.getWeather().get(FIRST_POSITION).getMain());
+            }
+            if (list.getWeather().get(FIRST_POSITION).getDescription() != null) {
+                description = String.valueOf(list.getWeather().get(FIRST_POSITION).getDescription());
             }
             if (list.getMain().getTemp() != null) {
                 temp = String.valueOf(list.getMain().getTemp());
@@ -44,7 +54,7 @@ public class CreateGeneric {
                 deg = String.valueOf(list.getWind().getDeg());
             }
 
-            return new Generic(title, temp, pressure, humidity, tempMin, tempMax, speed, deg);
+            return new Generic(title, image, description, temp, pressure, humidity, tempMin, tempMax, speed, deg);
         } else {
             return new Generic();
         }

@@ -7,8 +7,13 @@
     <string name="no_found">No found</string>
 
     <!--detail-->
-    <string name="title">Title</string>
-    <string name="description">Description</string>
-    <string name="page">Page</string>
-    <string name="authors">Authors</string>
+    <string name="description">Description:</string>
+    <string name="temperature">Temperature:</string>
+    <string name="pressure">Pressure:</string>
+    <string name="humidity">Humidity:</string>
+    <string name="temp_min">Temp Minimum:</string>
+    <string name="temp_max">Temp Maximum:</string>
+    <string name="wind_title">Wind</string>
+    <string name="speed">Speed:</string>
+    <string name="direction">Direction:</string>
 </resources>

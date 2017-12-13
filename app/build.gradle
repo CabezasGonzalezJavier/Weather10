@@ -89,4 +89,7 @@ dependencies {
 
     // AssertJ
     testCompile "org.assertj:assertj-core:$rootProject.assertj"
+
+    compile "de.hdodenhof:circleimageview:$rootProject.circle"
+
 }

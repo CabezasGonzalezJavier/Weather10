@@ -45,10 +45,11 @@ public class List {
         this.name = name;
     }
 
-    public List(String name, Main main, Wind wind) {
+    public List(String name, Main main, Wind wind, java.util.List<Weather> weather) {
         this.name = name;
         this.main = main;
         this.wind = wind;
+        this.weather = weather;
     }
 
     public Integer getId() {
