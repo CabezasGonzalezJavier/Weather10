@@ -40,6 +40,9 @@ public class DetailFragment extends Fragment implements DetailContract.View {
     @BindView(R.id.detail_fragment_temp_max)
     TextView mTempMaxTextView;
 
+    @BindView(R.id.detail_fragment_rain)
+    TextView mRainTextView;
+
     @BindView(R.id.detail_fragment_speed)
     TextView mSpeedTextView;
 
@@ -77,6 +80,7 @@ public class DetailFragment extends Fragment implements DetailContract.View {
         mHumidityTextView.setText(generic.getHumidity());
         mTempMinTextView.setText(generic.getTempMin());
         mTempMaxTextView.setText(generic.getTempMax());
+        mRainTextView.setText(generic.getRain());
         mSpeedTextView.setText(generic.getSpeed());
         mDirectionTextView.setText(generic.getDeg());
     }

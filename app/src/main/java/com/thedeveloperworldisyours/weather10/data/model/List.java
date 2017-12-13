@@ -29,7 +29,7 @@ public class List {
     private Sys sys;
     @SerializedName("rain")
     @Expose
-    private Object rain;
+    private Rain rain;
     @SerializedName("snow")
     @Expose
     private Object snow;
@@ -43,6 +43,13 @@ public class List {
     public List(Integer id, String name) {
         this.id = id;
         this.name = name;
+    }
+    public List(String name, Main main, Wind wind, java.util.List<Weather> weather, Rain rain) {
+        this.name = name;
+        this.main = main;
+        this.wind = wind;
+        this.weather = weather;
+        this.rain = rain;
     }
 
     public List(String name, Main main, Wind wind, java.util.List<Weather> weather) {
@@ -108,11 +115,11 @@ public class List {
         this.sys = sys;
     }
 
-    public Object getRain() {
+    public Rain getRain() {
         return rain;
     }
 
-    public void setRain(Object rain) {
+    public void setRain(Rain rain) {
         this.rain = rain;
     }
 

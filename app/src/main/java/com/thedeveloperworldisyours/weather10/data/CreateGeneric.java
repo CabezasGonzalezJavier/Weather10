@@ -23,6 +23,7 @@ public class CreateGeneric {
             String tempMax = noFound;
             String speed = noFound;
             String deg = noFound;
+            String rain = "0";
             if (list.getName() != null) {
                 title = list.getName();
             }
@@ -53,8 +54,11 @@ public class CreateGeneric {
             if (list.getWind().getDeg() != null) {
                 deg = String.valueOf(list.getWind().getDeg());
             }
+            if (list.getRain() != null) {
+                rain = String.valueOf(list.getRain().get3h());
+            }
 
-            return new Generic(title, image, description, temp, pressure, humidity, tempMin, tempMax, speed, deg);
+            return new Generic(title, image, description, temp, pressure, humidity, tempMin, tempMax, speed, deg, rain);
         } else {
             return new Generic();
         }

@@ -40,6 +40,9 @@ public class CitiesAdapter extends RecyclerView
         @BindView(R.id.cities_item_imageView)
         CircleImageView mImageView;
 
+        @BindView(R.id.cities_item_temp_textView)
+        TextView mTemp;
+
         @BindView(R.id.cities_item_constraintLayout)
         ConstraintLayout mConstraintLayout;
 
@@ -76,6 +79,7 @@ public class CitiesAdapter extends RecyclerView
     public void onBindViewHolder(CitiesAdapter.DataObjectHolder holder, int position) {
 
         holder.mName.setText(mResult.get(position).getName());
+        holder.mTemp.setText(String.valueOf(mResult.get(position).getMain().getTemp()));
         holder.mImageView.setImageDrawable(getImageFromString(mResult.get(position).getWeather().get(FIRST_POSITION).getMain(), mContext));
 
     }

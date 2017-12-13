@@ -6,6 +6,7 @@ import com.thedeveloperworldisyours.weather10.data.Generic;
 import com.thedeveloperworldisyours.weather10.data.RemoteDataSource;
 import com.thedeveloperworldisyours.weather10.data.model.Example;
 import com.thedeveloperworldisyours.weather10.data.model.Main;
+import com.thedeveloperworldisyours.weather10.data.model.Rain;
 import com.thedeveloperworldisyours.weather10.data.model.Weather;
 import com.thedeveloperworldisyours.weather10.data.model.Wind;
 import com.thedeveloperworldisyours.weather10.utils.scheduler.BaseSchedulerProvider;
@@ -87,6 +88,19 @@ public class CitiesPresenterTest {
         inOrder.verify(mView).showError();
     }
 
+    @Test
+    public void onClickItemWithRain() {
+        Rain rain = new Rain(1);
+        Weather weather = new Weather("Clear", "clear");
+        java.util.List<Weather> weatherList = new ArrayList<>();
+        weatherList.add(weather);
+        Main main = new Main(1.1, 1, 1, 1.1, 1.1);
+        Wind wind = new Wind(1, 1);
+        com.thedeveloperworldisyours.weather10.data.model.List listItem = new com.thedeveloperworldisyours.weather10.data.model.List("London", main, wind, weatherList, rain);
+        mPresenter.onClickItem(listItem, "");
+
+        verify(mView).takeGeneric(any(Generic.class));
+    }
     @Test
     public void onClickItem() {
         Weather weather = new Weather("Clear", "clear");
