@@ -1,3 +1,7 @@
+<p align="center">
+ <img src="https://github.com/CabezasGonzalezJavier/Weather10/blob/master/weather.gif" width="300px" />
+</p>
+
 Free API Weather
 This app inclid:
 
