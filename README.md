@@ -3,6 +3,7 @@
 </p>
 
 **[Free API Weather](http://openweathermap.org/)**
+
 This app inclid:
 
 **[Android Architecture Blueprints](https://github.com/googlesamples/android-architecture)**
